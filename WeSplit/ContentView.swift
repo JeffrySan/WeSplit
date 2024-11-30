@@ -9,25 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
 	
-	@State private var tapCount: Int = 0
-	@State private var name: String = ""
+	let students: [String] = ["Harry", "Hermonie", "Ron"]
+	@State private var selectedStudent: String = "Harry"
 	
 	var body: some View {
 		NavigationStack {
 			Form {
-				Section {
-					TextField("Enter your Name", text: $name)
-					Text("Your Name is \(name)")
-					Text("Hello, world!")
-					Text("Hello, world!")
-				}
-				Section {
-					Text("Hello, world!")
-					Text("Hello, world!")
-					Text("Hello, world!")
-				}
-				Button("Tap Count \(tapCount)") {
-					tapCount += 1
+				Picker("Select your student", selection: $selectedStudent) {
+					ForEach(students, id: \.self) {
+						Text($0)
+					}
 				}
 			}
 			.navigationTitle("Swift UI")
